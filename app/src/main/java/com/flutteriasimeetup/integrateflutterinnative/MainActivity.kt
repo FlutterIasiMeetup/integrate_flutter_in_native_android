@@ -30,6 +30,7 @@ import io.flutter.plugin.common.MethodChannel
 
 
 const val SINGLE_FLUTTER_ENGINE_ID = "com.integrateFlutterInNative.engineID"
+const val METHOD_CHANNEL_NAME = "com.integrateFlutterInNative.channel"
 class MainActivity : ComponentActivity() {
 
     private lateinit var flutterEngine: FlutterEngine
@@ -46,7 +47,7 @@ class MainActivity : ComponentActivity() {
             .getInstance()
             .put(SINGLE_FLUTTER_ENGINE_ID, flutterEngine)
 
-        methodChannel = MethodChannel(flutterEngine.dartExecutor, "com.integrateFlutterInNative.channel")
+        methodChannel = MethodChannel(flutterEngine.dartExecutor, METHOD_CHANNEL_NAME)
         methodChannel.setMethodCallHandler { call, result -> handleHostChannelMethods(call, result) }
     }
     private fun handleHostChannelMethods(
